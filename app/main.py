@@ -67,13 +67,24 @@ def fill():
     name = request.form.get('name')
     phone = request.form.get('phone')
     status = request.form.get('status')
+    is_ccip_user = False
 
     if token is not None:
         attendee = get_attendee(token=token)
         if attendee is not None:
             raise Error("Aleady fill the form")
 
+        payload = {'token': token}
+        r = requests.get(config.AUTH_ENDPOINT, params=payload)
+
+        if r.status_code != 200:
+            raise Error("Invalid token")
+
+        is_ccip_user = True
+
     attendee = Attendee()
+    if is_ccip_user:
+        attendee.token = token
     attendee.name = name
     attendee.phone = phone
     attendee.status = (status == "true")
