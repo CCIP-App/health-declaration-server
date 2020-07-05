@@ -66,7 +66,6 @@ def fill():
     token = request.form.get('token')
     name = request.form.get('name')
     phone = request.form.get('phone')
-    address = request.form.get('address')
     status = request.form.get('status')
 
     if token is not None:
@@ -77,7 +76,6 @@ def fill():
     attendee = Attendee()
     attendee.name = name
     attendee.phone = phone
-    attendee.address = address
     attendee.status = (status == "true")
     attendee.save()
 
