@@ -90,4 +90,12 @@ def fill():
     attendee.status = (status == "true")
     attendee.save()
 
+    if config.CREATE_ATTENDEE_ENDPOINT is not None and not is_ccip_user:
+        payload = {
+            'token': str(attendee.id),
+            'name': name
+        }
+
+        requests.post(config.CREATE_ATTENDEE_ENDPOINT, data=payload)
+
     return jsonify({'fill': True, 'id': str(attendee.id)})
