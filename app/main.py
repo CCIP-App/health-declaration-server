@@ -98,4 +98,7 @@ def fill():
 
         requests.post(config.CREATE_ATTENDEE_ENDPOINT, data=payload)
 
+        attendee.token = str(attendee.id)
+        attendee.save()
+
     return jsonify({'fill': True, 'id': str(attendee.id)})
