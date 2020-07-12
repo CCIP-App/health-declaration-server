@@ -69,6 +69,9 @@ def fill():
     status = request.form.get('status')
     is_ccip_user = False
 
+    if status == "false":
+        raise Error("Rest at home")
+
     if token is not None:
         attendee = get_attendee(token=token)
         if attendee is not None:
