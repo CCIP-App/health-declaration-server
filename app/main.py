@@ -66,6 +66,7 @@ def fill():
     token = request.form.get('token')
     name = request.form.get('name')
     phone = request.form.get('phone')
+    email = request.form.get('email')
     status = request.form.get('status')
     is_ccip_user = False
 
@@ -90,6 +91,7 @@ def fill():
         attendee.token = token
     attendee.name = name
     attendee.phone = phone
+    attendee.email = email
     attendee.status = (status == "true")
     attendee.save()
 
