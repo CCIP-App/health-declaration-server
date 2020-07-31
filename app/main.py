@@ -76,7 +76,7 @@ def fill():
     if token is not None:
         attendee = get_attendee(token=token)
         if attendee is not None:
-            raise Error("Aleady fill the form")
+            raise Error("Already fill the form")
 
         payload = {'token': token}
         r = requests.get(config.AUTH_ENDPOINT, params=payload)
